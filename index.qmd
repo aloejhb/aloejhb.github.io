@@ -1,0 +1,13 @@
+---
+title: "Welcome!"
+about: 
+  id: hero-heading
+  template: solana
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/aloejhb
+---
+## 
+:::{#hero-heading}
+Hi, this is Bo.
