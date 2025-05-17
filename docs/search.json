@@ -7,13 +7,6 @@
     "text": "Github\n  \n\n      \nHi, this is Bo."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
     "objectID": "index.html#section",
     "href": "index.html#section",
     "title": "Welcome!",
@@ -21,17 +14,24 @@
     "text": "Github\n  \n\n      \nHi, this is Bo."
   },
   {
-    "objectID": "posts/202505_hidden_markov/index.html",
-    "href": "posts/202505_hidden_markov/index.html",
-    "title": "Hidden Markov Models",
-    "section": "",
-    "text": "Just a quick note on Hidden Markov Models (HMMs).\nThey model systems with hidden states and observable outputs.\n#| echo: true states = [“Rainy”, “Sunny”] observations = [“walk”, “shop”, “clean”] print(“Simple HMM example”)"
-  },
-  {
     "objectID": "posts/index.html",
     "href": "posts/index.html",
     "title": "Blog",
     "section": "",
     "text": "Welcome to my blog!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHidden Markov Models\n\n\n\n\n\n\n\n\nMay 17, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "posts/202505_hidden_markov/index.html",
+    "href": "posts/202505_hidden_markov/index.html",
+    "title": "Hidden Markov Models",
+    "section": "",
+    "text": "Just a quick note on Hidden Markov Models (HMMs).\nThey model systems with hidden states and observable outputs.\n#| echo: true states = [“Rainy”, “Sunny”] observations = [“walk”, “shop”, “clean”] print(“Simple HMM example”)"
   }
 ]
