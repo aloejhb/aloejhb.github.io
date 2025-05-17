@@ -8,6 +8,6 @@ about:
       text: Github
       href: https://github.com/aloejhb
 ---
-## 
+##
 :::{#hero-heading}
 Hi, this is Bo.

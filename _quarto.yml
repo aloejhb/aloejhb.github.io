@@ -6,9 +6,10 @@ website:
   title: "Bo Hu"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - href: blogs.qmd
+      - text: Home
+        href: index.qmd
+      - text: Blog
+        href: posts/
 
 format:
   html:

@@ -1,0 +1,16 @@
+---
+title: "Hidden Markov Models"
+date: 2025-05-17
+categories: [modeling]
+format: html
+---
+
+Just a quick note on Hidden Markov Models (HMMs).
+
+They model systems with hidden states and observable outputs.
+
+```{python}
+#| echo: true
+states = ["Rainy", "Sunny"]
+observations = ["walk", "shop", "clean"]
+print("Simple HMM example")
