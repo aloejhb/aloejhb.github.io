@@ -13,10 +13,8 @@ website:
 
 format:
   html:
+    html-math-method: mathjax
     theme:
       - darkly
-    css: styles.css
     toc: true
-
-
-
+    css: styles.css
