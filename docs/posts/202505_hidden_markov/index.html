@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-83aefd10a34fddabb9792f01957309b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-6f07ef233788a9db4a9e464f4f39e149.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -195,7 +195,7 @@ window.Quarto = {
 <p>The nodes in the graph represent each family member. The weights on the edges represent the possibility of transition from one person to another. For example, if Grandma was the chief baker on day <span class="math inline">\(t-1\)</span>, then on day <span class="math inline">\(t\)</span>, there will be 0.6 chance that Mum is the chief baker and 0.4 chance Jenny will be the chief baker.</p>
 <p>With this rule, it is possible to have a sequence of the chief bakers from day 1 to day <span class="math inline">\(\tau\)</span> as follows: <span class="math display">\[Mum, Grandma, Jenny, Dad, Dad, Grandma, ..., Jenny\]</span> Let’s denote the chief baker on day <span class="math inline">\(t\)</span> as <span class="math inline">\(S_t\)</span>. We can call <span class="math inline">\(S_t\)</span> the <strong>hidden state</strong> of the bakery on day <span class="math inline">\(t\)</span>.</p>
 <p>Now we modeled how the hidden state transitions as a Markov chain. The last thing we need is to model how the hidden state <span class="math inline">\(S_t\)</span> decides on the observable <span class="math inline">\(X_t\)</span>, i.e.&nbsp;how the chief baker decides whether to bake the cookies.</p>
-<p>When Grandma is the chief baker, she is more likely to bake cookies. On the other hand, when Mum is the chief baker, she preferes to not bake cookies. We can summarize the probability for having cookies, when each of the family member is on duty in the following graph:</p>
+<p>When Grandma is the chief baker, she is more likely to bake cookies. On the other hand, when Mum is the chief baker, she prefers to not bake cookies. We can summarize the probability for having cookies, when each of the family member is on duty in the following graph:</p>
 <div class="cell">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -207,7 +207,7 @@ window.Quarto = {
 <p>The <strong>emitting probability</strong> of observing <span class="math inline">\(X_t\)</span> given the hidden state <span class="math inline">\(S_t\)</span> is thus denoted as <span class="math display">\[P(X_t|S_t),\]</span> which is called the conditional probability of <span class="math inline">\(X_t\)</span> given <span class="math inline">\(S_t\)</span>.</p>
 <p>Reading from the graph, the probability of baking cookies, given that on day <span class="math inline">\(t\)</span> Grandma is the chief baker, is <span class="math display">\[P(X_t = 1| S_t = Grandma) = 0.9\]</span>.</p>
 <p>Now we learned how to build a hidden Markov model: model the hidden part as a Markov chain, and model the emission of observables from the hidden states as conditional probabilities. The next task is to infer the sequence of hidden states for the sequence of observations. More advanced task would be to learn the transition rules based on the observations.</p>
-<p>For the more advanced knowledge about the hidden Markov model, one could check out this <a href="https://engrxiv.org/preprint/view/765/">tutorial</a>.</p>
+<p>For more advanced knowledge about the hidden Markov model, one could check out this <a href="https://engrxiv.org/preprint/view/765/">tutorial</a> by Benyamin Ghojogh etc.</p>
 
 
 
