@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-05-18">
 
-<title>An example hidden Markov model – Bo Hu</title>
+<title>Neural manifold beyond a data analysis tool – Bo Hu</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +24,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-83aefd10a34fddabb9792f01957309b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-83aefd10a34fddabb9792f01957309b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,37 +69,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -109,7 +80,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Bo Hu</span>
     </a>
   </div>
@@ -120,11 +91,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../posts/"> 
+    <a class="nav-link" href="../../../posts/"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -146,7 +117,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">An example hidden Markov model</h1>
+<h1 class="title">Neural manifold beyond a data analysis tool</h1>
   <div class="quarto-categories">
     <div class="quarto-category">modeling</div>
   </div>
@@ -172,19 +143,24 @@ window.Quarto = {
 </header>
 
 
-<p>jupyter: python3</p>
-<p>Hidden Markov model is proposed based-on a simple notion: we are only able to observe a small protion of the whole world and the underlying mechanisms that generate such observables are hidden. For example, we can observe the weather of each day without being aware of the complicated xxx.</p>
-<p>However, being not able to fully understand the latent mechanisms, we still want to be able to summarize general principles from previous observations and be able to predict future observations. For this purpose, the Hidden Markov model (HMM) was proposed.</p>
-<p>Hidden Markov model is divided into two parts: The hidden part where the state of the system evolves dynamically following certain rules; and the observable part where we can observe the emitted signals depending on the state of the hidden system.</p>
-<p>The transition of the states of the hidden system is described as a Markov chain, where the state in the current time step follows a distribution that is solely determined by the state in the previous time step. This property that the current state depends only on state one step before, but not more previous steps is called the Markov property.</p>
-<p>In short, hidden Markov model endows a Markov chain modeling the hidden system, and a rule on how the state of the hidden system determines the observable.</p>
-<p>Let’s use a simple example to make these abstract descriptions to life.</p>
-<p>Suppose that there is a family bakery in your neighborhood. Each day you pass by the bakery and on some days, the bakery sells delicious special cookies. Since you absolutely don’t want to miss these treats, you take notes everyday about whether the cookies are being sold on that day.</p>
-<p>Therefore, you have from day 1 to day <span class="math inline">\(\tau\)</span> a series of numbers: <span class="math display">\[0, 1, 0, 0, 1, 1, ..., 0\]</span>, where <span class="math inline">\(0\)</span> means the corresponding day there was no cookie and <span class="math inline">\(1\)</span> means the there were cookies sold.</p>
-<p>Let’s denote the value in this series on day <span class="math inline">\(t\)</span> as <span class="math inline">\(X_t\)</span>. Hence, <span class="math inline">\(X_t\)</span> is our observation on day <span class="math inline">\(t\)</span>.</p>
-<p>But what determines whether cookies is sold? This is hidden behind the counter for a cookie-loving customer. Apparently, the family who runs the bakery take turns to bake on each day. The family member do the baking is determined by the following graph: Who bakes today is determined by a transition graph:</p>
-<p>Insert a png <img src="./images/family_graph.png" class="img-fluid" alt="Graph for transition of baking position"></p>
-<p>The nodes in the graph represent each family member. The weights on the edges represent the possibility of transition from one person to another. For example</p>
+<p>The concept of neural manifold has been introduced for analysis of large scale recordings of neuronal activities in the brain. In short, neural manifold is a low-dimensional structure, embedded in the high-dimensional state space of the neural network, where each axis represents the activity level of a single neuron. A neural manifold is often associated with a semantic meaning and is thus used in data analysis to measure the properties of semantic representation in the network.</p>
+<p>Although many neural manifolds have been observed in experiments, a fundamental question is: are neural manifolds only a phenomena that we can observe, or it is associated with fundamental principles that govern the cognitive process in the brain?</p>
+<p>In this blog, I give a few examples of neural manifolds revealed in the brain and further discuss a mathematical framework proposed by on how to view the cognitive process as evolution on neural manifolds and manifold restructuring. This framework, with further development, can potentially unleash the power of Riemann geometry to analytically reveal universal computational principles in the brain.</p>
+<pre><code>    Task                    Manifold                                                                        Observation</code></pre>
+<p>Nieh Evidence accumulation 2D manifold jointly represent the spatial location and evidence quantity Single cells tile the 2D manifold with firing field Left and right turn Esparza back and forth running 1D ring manifold representing position of the animal in forward and bakwad run After flip of the cooridor, the ring manifold represented in deep PCs flipped, while the one represented in superficual PCs kept its original direction Sun Cue-dependent reward delivery at near and far location</p>
+<p>The stimulus in near and far context were step-by-step splitted into two rings with connection points only at the trial start and end</p>
+<p>These findings lead us to the following conclusions: 1. Neural manifolds are observable. 2. Neural network state evolves as a trajectory on the neural manifold. 3. Neural manifolds undergo structural reorganization in different context or during learning.</p>
+<p>With these observation, can we model the brain as a system that produces manifolds, travels along manifolds and restructure manifolds? If so, how can we model such system?</p>
+<p>After a discussion with Dr.&nbsp;Lu, who proposed a mathematical framework of intelligence in his arxiv paper, an initial idea was described.</p>
+<p>In an autonomous intelligent system, an aprior low-dimensional manifold exists in the state space. Without any perturbation, the state of the system evolves along the geodesics of the manifold. The trajectory that the state of the system travels is defined as the thought flow.</p>
+<p>When the system starts to accept input signals, the thought flow is pulled away from the trajectory by the unexpected input signal, namely prediction errors.</p>
+<p>In the long term, the prediction error signals drive the change of the manifold structure, guiding the future thought low through new geodesics that better matches the outside environment.</p>
+<p>Although more mathematical contents and simulation methods are needed to flesh up this framework, the idea is straightforward enough for further digestion.</p>
+<p>As a neurobiologist, when faced with this new theoretical frame, I naturally ask, whether this is what happens in the brain?</p>
+<p>Especially, how is the geometric structure encoded in the brain? Are these properties encoded in a specific brain region or are they distributely encoded? How is the dynamcis on the manifold implemented with neural circuits? How is manifold structure modified in process of learning?</p>
+<p>Is the model of manifold only a different view on the system, compared to other classical models, e.g.&nbsp;network dynamics, or can this model bring some not easily generated by other models? To be more specific, can Riemann and his decendents help us better understand the brain?</p>
+<p>What experiments are required to confirm or falsify such view?</p>
+<p>How much we can reveal with a linear corridor?</p>
 
 
 
