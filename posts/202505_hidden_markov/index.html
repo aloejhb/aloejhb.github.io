@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-17">
+<meta name="dcterms.date" content="2025-05-18">
 
-<title>Hidden Markov Models – Bo Hu</title>
+<title>An example hidden Markov model – Bo Hu</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6f07ef233788a9db4a9e464f4f39e149.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-83aefd10a34fddabb9792f01957309b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -117,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Hidden Markov Models</h1>
+<h1 class="title">An example hidden Markov model</h1>
   <div class="quarto-categories">
     <div class="quarto-category">modeling</div>
   </div>
@@ -131,7 +160,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 17, 2025</p>
+      <p class="date">May 18, 2025</p>
     </div>
   </div>
   
@@ -143,9 +172,42 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Just a quick note on Hidden Markov Models (HMMs).</p>
-<p>They model systems with hidden states and observable outputs.</p>
-<p>#| echo: true states = [“Rainy”, “Sunny”] observations = [“walk”, “shop”, “clean”] print(“Simple HMM example”)</p>
+<p>Hidden Markov model is proposed based on a simple notion: we are only able to observe a small portion of the world and the underlying mechanisms generating such observables are hidden. For example, we can observe the weather of each day without being aware of the complicated atmospheric dynamics that govern it.</p>
+<p>Although not able to fully understand the latent mechanisms, we still want to infer general principles from accumulated observations and predict future observations. For this purpose, the Hidden Markov model (HMM) was proposed.</p>
+<p>Hidden Markov model consists of two parts: The hidden part where the state of the system evolves dynamically following certain rules; and the observable part where we can observe the emitted signals depending on the state of the hidden system.</p>
+<p>The transition of the states of the hidden system is described as a Markov chain, where the state in the current time step follows a distribution that is solely determined by the state in the previous time step. This property that the current state depends on no more than the state one step before is called the Markov property.</p>
+<p>In short, hidden Markov model incorporates a Markov chain modeling the hidden system, and a rule on how the hidden state produces observables.</p>
+<p>Let’s use a simple example to bring these abstract concepts to life.</p>
+<p>Suppose there is a family bakery in your neighborhood. Each day you pass by the bakery and the bakery bakes delicious special cookies on some of the days. Since you absolutely don’t want to miss these cookies, you take notes every day about whether the cookies are baked.</p>
+<p>Therefore, you have from day 1 to day <span class="math inline">\(\tau\)</span> a series of numbers: <span class="math display">\[0, 1, 0, 0, 1, 1, ..., 0\]</span> where <span class="math inline">\(0\)</span> means the corresponding day there was no cookie and <span class="math inline">\(1\)</span> means that there were cookies baked.</p>
+<p>Let’s denote the value in this series on day <span class="math inline">\(t\)</span> as <span class="math inline">\(X_t\)</span>. Hence, <span class="math inline">\(X_t\)</span> is our <strong>observation</strong> on day <span class="math inline">\(t\)</span>.</p>
+<p>But what determines whether cookies are baked? This is hidden behind the counter from a cookie-loving customer. Apparently, the family in the bakery takes turns to be the chief baker on each day.</p>
+<p>The family members include Jenny, her Grandma, her Mum and her Dad. Whoever was the chief baker the day before decides who takes the chief position the current day.</p>
+<p>The rule of transition is determined by the following graph:</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/family_graph.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Graph for transition of chief baker</figcaption>
+</figure>
+</div>
+</div>
+<p>The nodes in the graph represent each family member. The weights on the edges represent the possibility of transition from one person to another. For example, if Grandma was the chief baker on day <span class="math inline">\(t-1\)</span>, then on day <span class="math inline">\(t\)</span>, there will be 0.6 chance that Mum is the chief baker and 0.4 chance Jenny will be the chief baker.</p>
+<p>With this rule, it is possible to have a sequence of the chief bakers from day 1 to day <span class="math inline">\(\tau\)</span> as follows: <span class="math display">\[Mum, Grandma, Jenny, Dad, Dad, Grandma, ..., Jenny\]</span> Let’s denote the chief baker on day <span class="math inline">\(t\)</span> as <span class="math inline">\(S_t\)</span>. We can call <span class="math inline">\(S_t\)</span> the <strong>hidden state</strong> of the bakery on day <span class="math inline">\(t\)</span>.</p>
+<p>Now we modeled how the hidden state transitions as a Markov chain. The last thing we need is to model how the hidden state <span class="math inline">\(S_t\)</span> decides on the observable <span class="math inline">\(X_t\)</span>, i.e.&nbsp;how the chief baker decides whether to bake the cookies.</p>
+<p>When Grandma is the chief baker, she is more likely to bake cookies. On the other hand, when Mum is the chief baker, she prefers to not bake cookies. We can summarize the probability for having cookies, when each of the family member is on duty in the following graph:</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/cookie_baking.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>The probability of whether cookies are baked depending on each family member being the chief baker</figcaption>
+</figure>
+</div>
+</div>
+<p>The <strong>emitting probability</strong> of observing <span class="math inline">\(X_t\)</span> given the hidden state <span class="math inline">\(S_t\)</span> is thus denoted as <span class="math display">\[P(X_t|S_t),\]</span> which is called the conditional probability of <span class="math inline">\(X_t\)</span> given <span class="math inline">\(S_t\)</span>.</p>
+<p>Reading from the graph, the probability of baking cookies, given that on day <span class="math inline">\(t\)</span> Grandma is the chief baker, is <span class="math display">\[P(X_t = 1| S_t = Grandma) = 0.9.\]</span></p>
+<p>Now we learned how to build a hidden Markov model: model the hidden part as a Markov chain, and model the emission of observables from the hidden states as conditional probabilities. The next task is to infer the sequence of hidden states for the sequence of observations. More advanced task would be to learn the transition rules based on the observations.</p>
+<p>For more advanced knowledge about the hidden Markov model, one could check out this <a href="https://engrxiv.org/preprint/view/765/">tutorial</a> by Benyamin Ghojogh etc.</p>
 
 
 
@@ -222,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/aloejhb\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
