@@ -4,10 +4,6 @@ date: 2025-05-18
 categories: [modeling]
 format: html
 ---
-jupyter: python3
-
-
-
 Hidden Markov model is proposed based-on a simple notion: we are only able to observe a small protion of the whole world and the underlying mechanisms that generate such observables are hidden. For example, we can observe the weather of each day without being aware of the complicated xxx.
 
 However, being not able to fully understand the latent mechanisms, we still want to be able to summarize general principles from previous observations and be able to predict future observations. For this purpose, the Hidden Markov model (HMM) was proposed.
@@ -38,7 +34,7 @@ The family members include Jenny, her grandma, her mom and her dad. Whoever was 
 The rule of transition is determined by the following graph:
 
 ::: {.cell}
-![Graph for transition of baking position](./images/family_graph.png){width=60% fig-align="center" fig-cap="A scenic mountain view"}
+![Graph for transition of baking position](./images/family_graph.png){width=60% fig-align="center"}
 :::
 
 The nodes in the graph represent each family member. The weights on the edges represent the possibility of transition from one person to another.
@@ -49,3 +45,20 @@ $$Mum, Grandma, Jenny, Dad, Dad, Grandma, ..., Jenny$$.
 Let's denote the chief baker on day $t$ as $S_t$. We can call $S_t$ the **hidden state** of the bakery on day $t$.
 
 Now we modeled how the hidden state transitions as a Markov chain. The last thing we need is to model how the hidden state $S_t$, i.e. the chief baker, decides on the observable $X_t$, i.e. whether there will be cookies baked.
+
+When grandma is the chief baker, she is more likely to bake cookies. On the other hand, when mum is the chief baker, she likes to not bake cookies. We can summarize the probability for having cookies, when each of the family member is on duty in the following graph.
+::: {.cell}
+![Graph for transition of baking position](./images/family_graph.png){width=60% fig-align="center"}
+:::
+
+The **emitting probability** is thus denoted as
+$$P(X_t|S_t)$$.
+
+Reading from the graph, the probability of baking cookies, given that on day $t$ Grandma is the chief baker, is
+$$P(X_t = 1| S_t = Grandma) = 0.9$$.
+
+
+Now we went through how hidden Markov model is built up. divided into the hidden part and the observable part; how the hidden part is modeled by a Markov chain; how the hidden state emittes observables.
+The next tasks are how to based on the observed sequence infer the sequence of hidden states. More advanced task would be to learn the transition rules based on the observables.
+
+For the more advanced knowledge about the hidden Markov model, one could check out this [tutorial](https://engrxiv.org/preprint/view/765/).
