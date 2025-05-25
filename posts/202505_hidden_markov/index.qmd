@@ -33,7 +33,7 @@ The family members include Jenny, her Grandma, her Mum and her Dad. Whoever was 
 The rule of transition is determined by the following graph:
 
 ::: {.cell}
-![Graph for transition of baking position](./images/family_graph.png){width=60% fig-align="center"}
+![Graph for transition of chief baker](./images/family_graph.png){width=60% fig-align="center"}
 :::
 
 The nodes in the graph represent each family member. The weights on the edges represent the possibility of transition from one person to another.
@@ -48,7 +48,7 @@ Now we modeled how the hidden state transitions as a Markov chain. The last thin
 When Grandma is the chief baker, she is more likely to bake cookies. On the other hand, when Mum is the chief baker, she prefers to not bake cookies. We can summarize the probability for having cookies, when each of the family member is on duty in the following graph:
 
 ::: {.cell}
-![Graph for transition of baking position](./images/family_graph.png){width=60% fig-align="center"}
+![The probability of whether cookies are baked depending on each family member being the chief baker](./images/cookie_baking.png){width=60% fig-align="center"}
 :::
 
 The **emitting probability** of observing $X_t$ given the hidden state $S_t$ is thus denoted as
@@ -56,7 +56,7 @@ $$P(X_t|S_t),$$
 which is called the conditional probability of $X_t$ given $S_t$.
 
 Reading from the graph, the probability of baking cookies, given that on day $t$ Grandma is the chief baker, is
-$$P(X_t = 1| S_t = Grandma) = 0.9$$.
+$$P(X_t = 1| S_t = Grandma) = 0.9.$$
 
 
 Now we learned how to build a hidden Markov model: model the hidden part as a Markov chain, and model the emission of observables from the hidden states as conditional probabilities. The next task is to infer the sequence of hidden states for the sequence of observations. More advanced task would be to learn the transition rules based on the observations.
