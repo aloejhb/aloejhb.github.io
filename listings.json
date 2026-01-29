@@ -2,7 +2,8 @@
   {
     "listing": "/posts/index.html",
     "items": [
-      "/posts/202505_hidden_markov/index.html"
+      "/posts/202505_hidden_markov/index.html",
+      "/posts/202601_actor_critic/index.html"
     ]
   }
 ]
