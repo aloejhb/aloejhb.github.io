@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-01-28">
 
-<title>blogs – Bo Hu</title>
+<title>Reward prediction context-dependent navigation – Bo Hu</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +24,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0774fc528949661fb60d8774007a227f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0774fc528949661fb60d8774007a227f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,8 +70,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -80,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Bo Hu</span>
     </a>
   </div>
@@ -91,11 +121,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts/"> 
+    <a class="nav-link" href="../../posts/"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -113,11 +143,105 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Reward prediction context-dependent navigation</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">modeling</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 28, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Since I joined CEBSIT in Shanghai, I have been participating in a weekly workshop on computational neuroscience. The workshop has a nice structure of first introducing basic computational neuroscience concepts and then encouraging students and postdocs to try out those concepts on their own experimental data.</p>
+<p>This blog is one of such attempts: I was analyzing recordings of neuronal activities as animals learn to navigate in a T-shaped maze in a context-dependent manner (Fig. 1). Context generally refers to a diffusive set of sensory stimuli that spans a certain range of space and time, but here the context is narrowly defined to be a combination of visual stimuli that stretches along the middle range of the main track of the T-maze. In each trial, either context A or B was given and the animal learns to associate context A with turning left at the end of the main track, and B with turning right, in order to receive a reward.</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/task.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Figure 1. The context-dependent navigation task in a T-maze.</figcaption>
+</figure>
+</div>
+</div>
+<p>As I am almost clueless about how to analyze such a dataset, I decided to try an angle learned from the workshop: the reward prediction error.</p>
+<p>Briefly, the reward prediction error is a measure used in reinforcement learning that quantifies how much error an agent makes in predicting future reward. In the context of neuroscience, let’s call the agent an “animal”. At each time step <span class="math inline">\(t\)</span>, the animal resides in a state <span class="math inline">\(s_t\)</span>. Depending on the state, the animal receives a reward with its value given by <span class="math inline">\(r_t\)</span>. Hence, each possible state is associated with a so-called value <span class="math inline">\(V(s_t)\)</span>, which is defined as: <span class="math display">\[V(s_t) = \mathbb{E}[\sum_{i=0}^{\infty}\gamma^i r_{t+1}]\]</span>, the expectation of all the future reward, weighted by a power of a discount factor <span class="math inline">\(\gamma\)</span>, depending on how far in the future the reward will be.</p>
+<p>However, the ground-truth value function <span class="math inline">\(V(s_t)\)</span> defined in the environment is not directly accessible; it can only be estimated by the animal. To improve the estimation <span class="math inline">\(\hat{V}(s_t)\)</span> step by step, the animal can compare the current estimate <span class="math inline">\(\hat{V}(s_t)\)</span> and the estimate based on the current reward information <span class="math inline">\(r_t + \gamma \hat{V}(s_t)\)</span>, which can be thought of as a “better” estimation. The reward prediction error is thus the difference between the “prediction” <span class="math inline">\(\hat{V}(s_t)\)</span> and the “target” <span class="math inline">\(r_t + \gamma \hat{V}(s_t)\)</span>:</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/rpe_equation.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Figure 2. The equation of reward prediction error.</figcaption>
+</figure>
+</div>
+</div>
+<p>Before using this framework to model the task learning, another important factor needs to be added: the animal does not only estimate the future reward passively, but also takes actions to increase the chance of getting a reward. For simplicity, the state <span class="math inline">\(s_t\)</span> of the animal is the location of the animal in the T-maze, and the action <span class="math inline">\(a_t\)</span> is sampled from <span class="math inline">\(\{"forward", "left turn", and "right turn"\}\)</span>. Obviously, the choice of action <span class="math inline">\(a\)</span> depends on the state <span class="math inline">\(s\)</span>, and this dependency is modeled as a conditional probability distribution <span class="math inline">\(\pi(a|s)\)</span>.</p>
+<p>Now our model has two parts: the action selection and the value estimation. This kind of model is called an actor-critic model in reinforcement learning, where the actor chooses actions and the critic evaluates them to guide learning and improve performance over time.</p>
+<p>Boiling down to the model architecture, we need some output units to encode the action policy, which is the probability of taking each of the possible actions (<span class="math inline">\(P_{forward}, P_{left}, P_{right}\)</span>). In addition, we need an output unit to encode the estimation of <span class="math inline">\(V_t\)</span>. The input signal is a high-dimensional vector, varying across spatial location and is context-specific. The latent layers include a recurrent neural network (CA3) feedforwardly connected to a single layer (CA1), which is an over-simplification of the hippocampus (Fig. 3).</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/model_architecture.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Figure 3. Model architecture</figcaption>
+</figure>
+</div>
+</div>
+<p>To model the T-maze where the animal navigates, we defined the states as discrete positions along the main track and the goal arms (Fig. 4). At each position, the animal observes a high-dimensional input signal. Within the middle range of the main track, the observables have a context-dependent remapping. Depending on the context, either the end of the left arm or right arm has a reward value of 1; at other positions, the reward is simply 0.</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/environment.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Figure 4. The environment</figcaption>
+</figure>
+</div>
+</div>
+<p>Now we are ready to train the network with the backpropagation through time (BPTT) algorithm combined with actor–critic loss functions, including generalized advantage estimation (GAE) to stabilize learning. We see that after approximately 2000 trials, the modeled animal reached a 100% success rate in choosing the turning direction.</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/learning_process.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Figure 5. The success rate increasee as the learning progressed</figcaption>
+</figure>
+</div>
+</div>
+<p>Interestingly, context-specific representations emerged in the modeled CA1 layer. Initially, CA1 activity patterns for Context A and Context B were mixed, and with learning, these representations gradually separated, even before the modeled animal correctly performed the task at the behavioral level.</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/ca1_umap.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Figure 6. UMAP dimensionality reduction of the CA1 representations</figcaption>
+</figure>
+</div>
+</div>
+<p>Another hallmark of learning appeared in the RPE signal: early in training, RPE was strongest at reward delivery. As learning progressed, RPE shifted backward in time, peaking near the beginning of the context region. After the task had been fully learned, the RPE signal almost disappeared. This temporal shift is a classic prediction of reinforcement learning theory.</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/rpe.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Figure 7. Reward prediction error as the learning progressed</figcaption>
+</figure>
+</div>
+</div>
+<p>In summary, this is an interesting exploration and helps me to model in my brain the mechanism of reward-driven learning. It might also inspire the analysis of the dataset of the CA1 recordings and the design of new experiments. Faced with a combinatorially large number of possible research directions at the early phase of a project, I find having a starting point like this is helpful to dampen the anxiety as a new postdoc.</p>
 
 
 
