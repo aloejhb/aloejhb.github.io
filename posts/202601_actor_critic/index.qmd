@@ -6,79 +6,30 @@ format: html
 ---
 Since I joined CEBSIT in Shanghai, I have been participating in a weekly workshop on computational neuroscience. The workshop has a nice structure of first introducing basic computational neuroscience concepts and then encourage students and postdocs to try out those concepts on their own experimental data.
 
-This blog is one of such attempts: I was analyzing recordings from hippocampal neurons as animals learn to navigate in a T-shaped maze in a context-dependent manner (Fig. 1). Context generally refers to a continuous diffusive set of sensory stimulus that spans a certain range of space and time, but here context has narrowly defined to be a combination of visual stimuli that stretches along the middle range of the main track of the T-maze. In each trial, either context A or B was given and the animal learns to associate context A with turning left at the end of the main track, and B with turning right, in order to receive a reward.
+This blog is one of such attempts: I was analyzing recordings from hippocampal neurons as animals learn to navigate in a T-shaped maze in a context-dependent manner (Fig. 1). Context generally refers to a continuous diffusive set of sensory stimulus that spans a certain range of space and time, but here the context has narrowly defined to be a combination of visual stimuli that stretches along the middle range of the main track of the T-maze. In each trial, either context A or B was given and the animal learns to associate context A with turning left at the end of the main track, and B with turning right, in order to receive a reward.
 
 TODO Figure 1
 
 As I am almost clueless about how to analyze such dataset, I decide to try an angle learned from the workshop: the reward prediction error.
 
-Briefly, the reward prediction error is a concept in reinforcement that gradually tracked more attention of neuroscientists. At each time step $t$, the animal resides in a state $s_t$. Depending on the state, the animal receive a reward with its value given by $r_t$.  Hence, each possible state is associated with a so-called value $V(s_t)$, which is defined as:
+Briefly, the reward prediction error is a measure used in reinforcement that quantifies how much error an agent makes in predicting future reward. In the context of neuroscience, let's call the agent an "animal". At each time step $t$, the animal resides in a state $s_t$. Depending on the state, the animal receive a reward with its value given by $r_t$.  Hence, each possible state is associated with a so-called value $V(s_t)$, which is defined as:
 $$V(s_t) = \mathbb{E}[\sum_{i=0}^{\infty}\gamma^i r_{t+1}]$$, the expectation of all the future reward, weighted by a power of a discount factor $\gamma$, depending on how far in the future the reward will be.
 
 However, the ground-truth value function $V(s_t)$ defined in the environment is not directly accessible, it can only be estimated by the animal. To improve the estimation $\hat{V}(s_t)$ step by step, the animal can compare the current estimate $\hat{V}(s_t)$ and the estimate based on the current reward information $r_t + \gamma \hat{V}(s_t)$, which can be thought of as a "better" esitmation. The reward prediction error is thus the difference between the "prediction" $\hat{V}(s_t)$ and the "target" $r_t + \gamma \hat{V}(s_t)$:
 
 TODO Equation figure 1 (RPE)
 
-Although RPE signal is most commonly reported to be present in the dopaminergic system, it does not prevent us from using this framework to understand how reward-association learning happens in the hippocampus.
+Although RPE is most commonly reported to be encoded in the dopaminergic system rather than the hippocampus, it does not prevent us from using this framework to understand how reward-association learning occurred. Before we can use this framework, another important factor needs to be added: the animal does not only estimate the future reward passively, but also take actions to increase the chance of getting a reward. For simplicity, the state $s_t$ of the animal is the location of the animal in the T-maze, and the action $a_t$ is sampled from $\{"forward", "left turn" and "right turn"\}$. Obviously, the choice of action $a$ depends on the state $s$, and this dependency is modeled as a conditional probability distribution $\pi (a|s)$.
+
+Now our model has two parts: the action selection and the value estimation. This kind of model is called a actor-critic model in reinforcement learning, where the actor chooses actions and the critic evaluates them to guide learning and improve performance over time.
+
+Boiling down to the model architecture, we need some output units to encode the action policy, which is the probability of taking each of the possible actions ($P_{forward}, P_{left}, P_{right}$). In addition, we need an output unit to encode the estimation of $V_t$. The input signal is a high dimensional vector, varying across spatial location and is context-specific. The latent layers include a recurrent neural network (CA3) feedforwardly connected to a single layer (CA1), which is a over-simplification of the hippocampus (Fig. 2).
+
+TODO network structure
+
+Environment
 
 
+CA1 representation
 
-
-Hidden Markov model is proposed based on a simple notion: we are only able to observe a small portion of the world and the underlying mechanisms generating such observables are hidden. For example, we can observe the weather of each day without being aware of the complicated atmospheric dynamics that govern it.
-
-Although not able to fully understand the latent mechanisms, we still want to infer general principles from accumulated observations and predict future observations. For this purpose, the Hidden Markov model (HMM) was proposed.
-
-Hidden Markov model consists of two parts:
-The hidden part where the state of the system evolves dynamically following certain rules;
-and the observable part where we can observe the emitted signals depending on the state of the hidden system.
-
-The transition of the states of the hidden system is described as a Markov chain, where the state in the current time step follows a distribution that is solely determined by the state in the previous time step. This property that the current state depends on no more than the state one step before is called the Markov property.
-
-In short, hidden Markov model incorporates a Markov chain modeling the hidden system, and a rule on how the hidden state produces observables.
-
-Let's use a simple example to bring these abstract concepts to life.
-
-Suppose there is a family bakery in your neighborhood. Each day you pass by the bakery and the bakery bakes delicious special cookies on some of the days. Since you absolutely don't want to miss these cookies, you take notes every day about whether the cookies are baked.
-
-Therefore, you have from day 1 to day $\tau$ a series of numbers:
-$$0, 1, 0, 0, 1, 1, ..., 0$$
-where $0$ means the corresponding day there was no cookie and $1$ means that there were cookies baked.
-
-Let's denote the value in this series on day $t$ as $X_t$. Hence, $X_t$ is our **observation** on day $t$.
-
-But what determines whether cookies are baked? This is hidden behind the counter from a cookie-loving customer. Apparently, the family in the bakery takes turns to be the chief baker on each day.
-
-The family members include Jenny, her Grandma, her Mum and her Dad. Whoever was the chief baker the day before decides who takes the chief position the current day.
-
-The rule of transition is determined by the following graph:
-
-::: {.cell}
-![Graph for transition of chief baker](./images/family_graph.png){width=60% fig-align="center"}
-:::
-
-The nodes in the graph represent each family member. The weights on the edges represent the possibility of transition from one person to another.
-For example, if Grandma was the chief baker on day $t-1$, then on day $t$, there will be 0.6 chance that Mum is the chief baker and 0.4 chance Jenny will be the chief baker.
-
-With this rule, it is possible to have a sequence of the chief bakers from day 1 to day $\tau$ as follows:
-$$Mum, Grandma, Jenny, Dad, Dad, Grandma, ..., Jenny$$
-Let's denote the chief baker on day $t$ as $S_t$. We can call $S_t$ the **hidden state** of the bakery on day $t$.
-
-Now we modeled how the hidden state transitions as a Markov chain. The last thing we need is to model how the hidden state $S_t$ decides on the observable $X_t$, i.e. how the chief baker decides whether to bake the cookies.
-
-When Grandma is the chief baker, she is more likely to bake cookies. On the other hand, when Mum is the chief baker, she prefers to not bake cookies. We can summarize the probability for having cookies, when each of the family member is on duty in the following graph:
-
-::: {.cell}
-![The probability of whether cookies are baked depending on each family member being the chief baker](./images/cookie_baking.png){width=60% fig-align="center"}
-:::
-
-The **emitting probability** of observing $X_t$ given the hidden state $S_t$ is thus denoted as
-$$P(X_t|S_t),$$
-which is called the conditional probability of $X_t$ given $S_t$.
-
-Reading from the graph, the probability of baking cookies, given that on day $t$ Grandma is the chief baker, is
-$$P(X_t = 1| S_t = Grandma) = 0.9.$$
-
-
-Now we learned how to build a hidden Markov model: model the hidden part as a Markov chain, and model the emission of observables from the hidden states as conditional probabilities. The next task is to infer the sequence of hidden states for the sequence of observations. More advanced task would be to learn the transition rules based on the observations.
-
-For more advanced knowledge about the hidden Markov model, one could check out this [tutorial](https://engrxiv.org/preprint/view/765/) by Benyamin Ghojogh etc.
+reward prediction error
