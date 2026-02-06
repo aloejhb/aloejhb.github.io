@@ -1,5 +1,5 @@
 ---
-title: "Reward prediction context-dependent navigation"
+title: "Reward prediction in context-dependent navigation"
 date: 2026-01-28
 categories: [modeling]
 format: html
